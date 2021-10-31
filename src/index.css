@@ -1,0 +1,11 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  user-select: none;
+}
+body {
+  overflow-x: hidden;
+}
