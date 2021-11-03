@@ -6,10 +6,11 @@ import converter from "../utils/converter";
 const Root = () => {
     const [values, setValues] = useState({
         text: "",
-        voice: ""
+        voice: "English (Lancaster)"
     });
 
     const [options, setOptions] = useState([]);
+
 
     useEffect(() => {
         const voiceList = speechSynthesis.getVoices();
@@ -23,7 +24,7 @@ const Root = () => {
 
     const convertHandler = () => {
         if (values.text !== "")
-            converter(values);
+            converter(values, options);
     }
 
     return (
@@ -36,8 +37,8 @@ const Root = () => {
             <div className="form-control flex flex-col">
                 <label htmlFor="voice" className="text-lg my-2">Select Voice</label>
                 <div className="flex items-center border border-gray-200 ">
-                    <select name="voice" id="voice" className="block w-full bg-transparent p-3 outline-none  " onChange={(e) => inputChangeHandler(e)}>
-                        {options.map((voice) => { return <option value={voice.name}>{voice.name} ({voice.lang})</option> })}
+                    <select name="voice" id="voice" className="block w-full bg-transparent p-3 outline-none" value={values.voice} onChange={(e) => inputChangeHandler(e)}>
+                        {options.map((voice) => { return <option key={voice.name} value={voice.name}>{voice.name} ({voice.lang})</option> })}
                     </select>
                 </div>
             </div>
